@@ -9,7 +9,7 @@
 ### unit_test
 - 단위별 기능 test
 ### mnist
-- Deep Neural Network [dnn.py](tensorflow_edu/mnist/dnn.py) sample
-- Convolutional Neural Networks [cnn.py](tensorflow_edu/mnist/cnn.py) sample
+- Deep Neural Network [dnn.py](https://github.com/kjjeon/tensorflow_edu/blob/master/mnist/dnn.py) sample
+- Convolutional Neural Networks [cnn.py](https://github.com/kjjeon/tensorflow_edu/blob/master/mnist/cnn.py) sample
 
 
