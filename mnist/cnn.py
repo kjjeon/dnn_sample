@@ -38,8 +38,15 @@ def deepnn(x):
     # Reshape to use within a convolutional neural net.
     # Last dimension is for "features" - there is only one here, since images are
     # grayscale -- it would be 3 for an RGB image, 4 for RGBA, etc.
+
+    """
+        predict : input -> conv -> relu -> pool -> conv -> relu -> pool -> affine -> relu -> droupout -> affine
+        loss : croos_entropy
+        optimizer : Adam
+    """
+
     with tf.name_scope('reshape'):
-        x_image = tf.reshape(x, [-1, 28, 28, 1])
+        x_image = tf.reshape(x, [-1, 28, 28, 1]) # (배치 갯수, 세로, 가로, 컬러)
 
     # First convolutional layer - maps one grayscale image to 32 feature maps.
     with tf.name_scope('conv1'):
@@ -83,18 +90,24 @@ def deepnn(x):
 
 def conv2d(x, W):
     """conv2d returns a 2d convolution layer with full stride."""
+    # 스트라이드 설정을 할때는 0,3 인덱스는 무조건 1로 설정해야하고 나머지 1,2 값은 설정하고자 하는
+    # 스트라이드 값을 동일한 값으로 입력해야한다.
     return tf.nn.conv2d(x, W, strides=[1, 1, 1, 1], padding='SAME')
 
 
 def max_pool_2x2(x):
     """max_pool_2x2 downsamples a feature map by 2X."""
+    # 일반적으로 맥스풀 설정 할때에는 스트라이드 값도 동일 하게 설정 해야한다. 0,3 인덱스들은 무조건 1 나머지 값은
+    # Pool 설정 값에 따른다.
     return tf.nn.max_pool(x, ksize=[1, 2, 2, 1],
                           strides=[1, 2, 2, 1], padding='SAME')
 
 
 def weight_variable(shape):
     """weight_variable generates a weight variable of a given shape."""
-    initial = tf.truncated_normal(shape, stddev=0.1)
+    # 0.1 표준편차를 가지는 잘린정규분포로 초기화
+    # 책에서는 relu 에서는 he 초기화 하라고 하나 큰차이가 없는듯 하다.
+    initial = tf.truncated_normal(shape, stddev=0.1) # 표준편차 0.1
     return tf.Variable(initial)
 
 

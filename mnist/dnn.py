@@ -41,12 +41,13 @@ def main(_):
     # label(정답)을 placeholder로 선언 한다.
     T = tf.placeholder(tf.float32, [None, output_node_size], name="target")
 
-    # tensorboard 디버깅을 위해 scope를 구별해서 나눈다.
-    # 아래는 Fully connected layer 2개가 있는 딥러닝 구조 이다.
-    # predict : input -> affine -> relu -> dropout -> affine -> relu -> dropout -> affine
-    # loss : croos_entropy
-    # optimizer : Adam
-
+    """
+        아래는 Fully connected layer 2개가 있는 딥러닝 구조 이다.
+        요즘 경사하강법 보다 많이 쓰이는 adam을 사용 하였다.
+        predict : input -> affine -> relu -> dropout -> affine -> relu -> dropout -> affine
+        loss : croos_entropy
+        optimizer : Adam
+    """
     with tf.name_scope("Layer2") as scope:
         L1_affine = tf.matmul(X, W1) + b1
         L1_activation = tf.nn.relu(L1_affine)
