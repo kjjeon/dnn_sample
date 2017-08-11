@@ -101,7 +101,8 @@ def do_eval(sess,
                                    images_placeholder,
                                    labels_placeholder)
         true_count += sess.run(eval_correct, feed_dict=feed_dict)
-    precision = float(true_count) / num_examples    print('  Num examples: %d  Num correct: %d  Precision @ 1: %0.04f' %
+    precision = float(true_count) / num_examples
+    print('  Num examples: %d  Num correct: %d  Precision @ 1: %0.04f' %
           (num_examples, true_count, precision))
 
 
@@ -249,13 +250,13 @@ if __name__ == '__main__':
     parser.add_argument(
         '--input_data_dir',
         type=str,
-        default='./input_data',
+        default='/tmp/tensorflow/mnist/input_data',
         help='Directory to put the input data.'
     )
     parser.add_argument(
         '--log_dir',
         type=str,
-        default='./logs/ffnn',
+        default='/tmp/tensorflow/mnist/logs/fully_connected_feed',
         help='Directory to put the log data.'
     )
     parser.add_argument(
