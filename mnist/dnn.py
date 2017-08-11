@@ -110,7 +110,7 @@ def main(_):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data_dir', type=str, default='./mnist/input_data',
+    parser.add_argument('--data_dir', type=str, default='./input_data',
                         help='Directory for storing input data')
     FLAGS, _ = parser.parse_known_args()
     tf.app.run()
